@@ -1,6 +1,7 @@
 import express from "express";
 import { ProductControllers } from "./product.controller";
-import { verfiyToken } from "../../middleware/authMiddleware";
+import { verifyToken } from "../../middleware/authMiddleware";
+
 import { isAdmin } from "../../middleware/adminMiddleware";
 const router = express.Router();
 
@@ -8,10 +9,10 @@ const router = express.Router();
 //     res.send("product routes done by allover")
 // })
 router.get('/', ProductControllers.getAllProducts)
-router.post('/',verfiyToken, isAdmin, ProductControllers.createProduct)
+router.post('/',verifyToken, isAdmin, ProductControllers.createProduct)
 router.get('/:productId', ProductControllers.getSingleProduct)
-router.put('/:productId',verfiyToken, isAdmin , ProductControllers.updateProduct)
-router.delete('/:productId',verfiyToken, isAdmin , ProductControllers.deleteProduct)
+router.put('/:productId',verifyToken, isAdmin , ProductControllers.updateProduct)
+router.delete('/:productId',verifyToken, isAdmin , ProductControllers.deleteProduct)
 
 
 export const ProductRoutes = router;
